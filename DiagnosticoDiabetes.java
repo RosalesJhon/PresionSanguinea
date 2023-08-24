@@ -46,39 +46,62 @@ public class DiagnosticoDiabetes {
     }
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        do {
+            int opcion = 0;
 
-        System.out.println("Diagnostico de Diabetes");
-        System.out.print("Ingrese su presion arterial sistolica: ");
-        int sistolica = scanner.nextInt();
-        System.out.print("Ingrese su presion arterial diastolica: ");
-        int diastolica = scanner.nextInt();
-        System.out.println("Tiene antecedentes familiares de diabetes? (S/N):");
-        String antecedentes = scanner.next().toLowerCase();
+            Scanner scanner = new Scanner(System.in);
 
-        // Crear una instancia con los valores ingresados por el usuario
-        PresionSanguinea presion = new PresionSanguinea(sistolica, diastolica);
+            System.out.println("\n\tDiagnostico de Diabetes");
+            System.out.print("\nIngrese su presion arterial sistolica: ");
+            int sistolica = scanner.nextInt();
+            System.out.print("Ingrese su presion arterial diastolica: ");
+            int diastolica = scanner.nextInt();
+            System.out.print("Tiene antecedentes familiares de diabetes? (S/N): ");
+            String antecedentes = scanner.next().toUpperCase();
 
-        // Interpretar la presión arterial
-        String interpretacion = presion.Presion();
-        System.out.println("Interpretacion de la Presion Arterial: " + interpretacion);
+            // Crear una instancia con los valores ingresados por el usuario
+            PresionSanguinea presion = new PresionSanguinea(sistolica, diastolica);
 
-        // Verificar si el usuario podría ser diabético
-        if ("Hipertension".equals(interpretacion)) {
-            System.out.println("Tiene presion arterial alta, lo que podría estar relacionado con la diabetes. Consulte a un medico.");
-        } else if ("Hipotension".equals(interpretacion)) {
-            System.out.println("Tiene presion arterial baja. Esto no está relacionado con la diabetes, pero es importante para su salud.");
-        } else {
-            System.out.println("No se encontraron indicaciones claras de diabetes basadas unicamente en la presión arterial.");
-        }
+            // Interpretar la presión arterial
+            String interpretacion = presion.Presion();
+            System.out.print("\n\tInterpretacion\n\nPresion Arterial: " + interpretacion);
 
-        // Evaluar antecedentes familiares
-        if (antecedentes.equals("N") && "Hipertensión".equals(interpretacion)) {
-            System.out.println("Debido a los antecedentes familiares de diabetes y la presión arterial alta, se recomienda encarecidamente consultar a un médico para una evaluación completa.");
-        } else if (antecedentes.equals("S")) {
-            System.out.println("Tiene antecedentes familiares de diabetes, lo que aumenta el riesgo. Se recomienda un chequeo médico regular.");
-        } else {
-            System.out.println("No se encontraron antecedentes familiares de diabetes.");
-        }
+            // Verificar si el usuario podría ser diabético
+            if ("Hipertension".equals(interpretacion)) {
+                System.out.print(
+                        "\nTiene presion arterial alta, lo que podría estar relacionado con la diabetes. Consulte a un medico.");
+            } else if ("Hipotension".equals(interpretacion)) {
+                System.out.print(
+                        "\nTiene presion arterial baja. Esto no está relacionado con la diabetes, pero es importante para su salud.");
+            } else {
+                System.out.print(
+                        "\nNo se encontraron indicaciones claras de diabetes basadas unicamente en la presión arterial.");
+            }
+
+            // Evaluar antecedentes familiares
+            if (antecedentes.equals("S") && "Hipertensión".equals(interpretacion)) {
+                System.out.print(
+                        "\nDebido a los antecedentes familiares de diabetes y la presión arterial alta, se recomienda encarecidamente consultar a un médico para una evaluación completa.");
+            } else if (antecedentes.equals("S")) {
+                System.out.print(
+                        "\nTiene antecedentes familiares de diabetes, lo que aumenta el riesgo. Se recomienda un chequeo médico regular.");
+                System.out.println("\nQue desea realizar ahora ?\n\t1: Hacer Otra Consulta: \n\t2: Salir\nOpcion: ");
+                opcion = scanner.nextInt();
+                if(opcion==2){
+                    System.out.println("\n\tHasta Luego!!");
+                    break;
+                }
+            } else {
+                System.out.println("\nNo se encontraron antecedentes familiares de diabetes.");
+                System.out.print(
+                        "\nTiene antecedentes familiares de diabetes, lo que aumenta el riesgo. Se recomienda un chequeo médico regular.");
+                System.out.println("\nQue desea realizar ahora ?\n\t1: Hacer Otra Consulta: \n\t2: Salir\nOpcion: ");
+                opcion = scanner.nextInt();
+                if(opcion==2){
+                    System.out.println("\n\tHasta Luego!!");
+                    break;
+                }
+            }
+        } while (10==10);
     }
 }
